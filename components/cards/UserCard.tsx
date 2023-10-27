@@ -13,7 +13,7 @@ interface Props {
   personType: string;
 }
 
-const UserCard = ({ id, name, username, imgUrl, personType }: Props) => {
+function UserCard({ id, name, username, imgUrl, personType }: Props) {
   const router = useRouter();
 
   const isCommunity = personType === "Community";
@@ -49,7 +49,7 @@ const UserCard = ({ id, name, username, imgUrl, personType }: Props) => {
         View
       </Button>
     </article>
-  )
+  );
 }
 
 export default UserCard;

@@ -19,8 +19,8 @@ const userSchema = new mongoose.Schema({
   threads: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Thread'
-    }
+      ref: "Thread",
+    },
   ],
   onboarded: {
     type: Boolean,
@@ -29,9 +29,9 @@ const userSchema = new mongoose.Schema({
   communities: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Community"
-    }
-  ]
+      ref: "Community",
+    },
+  ],
 });
 
 const User = mongoose.models.User || mongoose.model("User", userSchema);

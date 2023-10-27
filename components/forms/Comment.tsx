@@ -21,35 +21,34 @@ import { CommentValidation } from "@/lib/validations/thread";
 import { addCommentToThread } from "@/lib/actions/thread.actions";
 
 interface Props {
-    threadId: string;
-    currentUserImg: string;
-    currentUserId: string;
-  }
-  
-const Comment = ({ threadId, currentUserImg, currentUserId}: Props) => {
+  threadId: string;
+  currentUserImg: string;
+  currentUserId: string;
+}
 
-    const pathname = usePathname();
+function Comment({ threadId, currentUserImg, currentUserId }: Props) {
+  const pathname = usePathname();
 
-    const form = useForm<z.infer<typeof CommentValidation>>({
-      resolver: zodResolver(CommentValidation),
-      defaultValues: {
-        thread: "",
-      },
-    });
-  
-    const onSubmit = async (values: z.infer<typeof CommentValidation>) => {
-      await addCommentToThread(
-        threadId,
-        values.thread,
-        JSON.parse(currentUserId),
-        pathname
-      );
-  
-      form.reset();
-    };
+  const form = useForm<z.infer<typeof CommentValidation>>({
+    resolver: zodResolver(CommentValidation),
+    defaultValues: {
+      thread: "",
+    },
+  });
 
-    return(
-        <Form {...form}>
+  const onSubmit = async (values: z.infer<typeof CommentValidation>) => {
+    await addCommentToThread(
+      threadId,
+      values.thread,
+      JSON.parse(currentUserId),
+      pathname
+    );
+
+    form.reset();
+  };
+
+  return (
+    <Form {...form}>
       <form className='comment-form' onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
           control={form.control}
@@ -82,7 +81,7 @@ const Comment = ({ threadId, currentUserImg, currentUserId}: Props) => {
         </Button>
       </form>
     </Form>
-    )
+  );
 }
 
 export default Comment;
